@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alpha Corretora — Consórcio, Seguros e Convênios</title>
+  <meta name="description" content="Corretora completa: consórcios, seguros auto/vida/empresa e convênios. Atendimento consultivo e planos sob medida." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; --card:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --brand:#0ea5e9; --brand-2:#22c55e; --accent:#f59e0b;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;border-radius:12px}
+    .container{width:min(1120px,92%);margin:0 auto}
+    header{position:sticky;top:0;z-index:40;background:rgba(15,23,42,.7);backdrop-filter:blur(8px);border-bottom:1px solid rgba(148,163,184,.15)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#2563eb);display:grid;place-items:center;font-weight:700}
+    .logo span{font-size:18px}
+    .menu{display:flex;gap:18px;align-items:center}
+    .menu a{font-weight:500;color:var(--text);opacity:.9}
+    .btn{padding:10px 16px;border-radius:999px;background:var(--brand);color:#00131c;font-weight:700;border:1px solid rgba(255,255,255,.07);box-shadow:0 6px 20px rgba(14,165,233,.25)}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid rgba(148,163,184,.35)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;padding:48px 0}
+    .hero h1{font-size:40px;line-height:1.1;margin:0 0 12px}
+    .hero p{color:var(--muted);font-size:17px;margin:0 0 20px}
+    .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:#0a162e;border:1px solid rgba(14,165,233,.35);padding:8px 12px;border-radius:999px;color:#93c5fd;font-size:13px;margin-bottom:14px}
+    .card{background:var(--card);border:1px solid rgba(148,163,184,.12);border-radius:var(--radius);padding:20px}
+    .grid{display:grid;gap:18px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .section{padding:56px 0}
+    .section h2{font-size:28px;margin:0 0 8px}
+    .sub{color:var(--muted);margin:0 0 24px}
+    .service{display:grid;gap:12px}
+    .service h3{margin:0;font-size:18px}
+    .list{margin:0;padding-left:18px;color:var(--muted)}
+    .highlight{color:#bbf7d0}
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+    .kpi{background:#0c1a33;border:1px solid rgba(148,163,184,.18);padding:16px;border-radius:14px;text-align:center}
+    .kpi b{font-size:22px;display:block}
+    .tag{display:inline-flex;align-items:center;gap:8px;background:#12213f;border:1px solid rgba(148,163,184,.22);color:#c7d2fe;padding:6px 10px;border-radius:999px;font-size:12px}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .testi{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .quote{background:#0f1b31;border:1px solid rgba(148,163,184,.16);border-radius:16px;padding:16px}
+    .quote p{color:#cbd5e1}
+    .author{display:flex;align-items:center;gap:10px;margin-top:10px}
+    .avatar{width:36px;height:36px;border-radius:999px;background:#1e293b}
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    form input, form select, form textarea{width:100%;padding:12px 14px;border-radius:12px;background:#0b1831;border:1px solid rgba(148,163,184,.25);color:var(--text)}
+    form textarea{min-height:120px;resize:vertical}
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(148,163,184,.15)}
+    .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:18px}
+    .social{display:flex;gap:10px;margin-top:10px}
+    .whatsapp{position:fixed;right:16px;bottom:16px;background:#25d366;color:#003;display:flex;align-items:center;gap:8px;padding:12px 14px;border-radius:999px;font-weight:700;box-shadow:0 8px 26px rgba(0,0,0,.35)}
+
+    /* Responsive */
+    .hamb{display:none}
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr;}
+      .about{grid-template-columns:1fr}
+      .testi{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .cols{grid-template-columns:1fr}
+      .menu{display:none}
+      .hamb{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(148,163,184,.35);padding:8px 12px;border-radius:10px}
+      .mobile{display:none;position:absolute;left:0;right:0;top:60px;background:#0b1220;border-bottom:1px solid rgba(148,163,184,.15)}
+      .mobile a{display:block;padding:14px 20px;border-top:1px solid rgba(148,163,184,.08)}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo"><span>α</span></div>
+        <div>
+          <strong>Alpha Corretora</strong><br>
+          <small style="color:var(--muted)">Consórcios • Seguros • Convênios</small>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#consorcio">Consórcios</a>
+        <a href="#seguros">Seguros</a>
+        <a href="#convenios">Convênios</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato" class="btn">Simular agora</a>
+      </nav>
+      <button class="hamb" id="hambBtn">Menu ▾</button>
+    </div>
+    <div class="mobile" id="mobileMenu">
+      <a href="#servicos">Serviços</a>
+      <a href="#consorcio">Consórcios</a>
+      <a href="#seguros">Seguros</a>
+      <a href="#convenios">Convênios</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container hero">
+    <div>
+      <span class="badge">🚀 Atendimento consultivo e sem burocracia</span>
+      <h1>Planos sob medida em <span class="highlight">consórcio</span>, <span class="highlight">seguros</span> e <span class="highlight">convênios</span>.</h1>
+      <p>Compare opções, simule valores em minutos e feche com quem acompanha você do início ao fim. Transparência total, taxas competitivas e parceria com as principais administradoras e seguradoras do país.</p>
+      <div class="cta">
+        <a href="#contato" class="btn">Quero uma simulação</a>
+        <a href="#servicos" class="btn btn-outline">Ver serviços</a>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><b>+2.500</b><small>clientes atendidos</small></div>
+        <div class="kpi"><b>98%</b><small>de satisfação</small></div>
+        <div class="kpi"><b>24h</b><small>retorno médio</small></div>
+        <div class="kpi"><b>10+</b><small>parceiros oficiais</small></div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1200&auto=format&fit=crop" alt="Pessoa analisando finanças" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+        <span class="tag">✓ Sem consulta ao SPC no consórcio</span>
+        <span class="tag">✓ Parcelas que cabem no bolso</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section id="servicos" class="section">
+    <div class="container">
+      <h2>O que fazemos</h2>
+      <p class="sub">Soluções completas para proteger seu patrimônio, planejar conquistas e economizar na rede credenciada.</p>
+      <div class="grid grid-3">
+        <div class="card service">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Consórcio de automóveis" />
+          <h3 id="consorcio">Consórcios</h3>
+          <ul class="list">
+            <li>Imóveis, veículos, motos e serviços</li>
+            <li>Sem juros, taxa de administração</li>
+            <li>Lances livres e embutidos</li>
+            <li>Crédito com poder de compra</li>
+          </ul>
+          <a href="#contato" class="btn">Simular consórcio</a>
+        </div>
+        <div class="card service">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop" alt="Seguro e proteção" />
+          <h3 id="seguros">Seguros</h3>
+          <ul class="list">
+            <li>Auto, residencial e empresarial</li>
+            <li>Vida, saúde e odontológico</li>
+            <li>RC, equipamentos e frotas</li>
+            <li>Assistência 24h e franquias flexíveis</li>
+          </ul>
+          <a href="#contato" class="btn" style="background:var(--brand-2)">Cotação de seguros</a>
+        </div>
+        <div class="card service">
+          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Convênios e benefícios" />
+          <h3 id="convenios">Convênios</h3>
+          <ul class="list">
+            <li>Saúde e odontológico empresariais</li>
+            <li>Rede credenciada nacional</li>
+            <li>Coparticipação e carência reduzida</li>
+            <li>Planos PME e MEI</li>
+          </ul>
+          <a href="#contato" class="btn" style="background:var(--accent)">Planos e valores</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diferenciais / Sobre -->
+  <section id="sobre" class="section">
+    <div class="container about">
+      <div class="card">
+        <h2>Por que a Alpha Corretora?</h2>
+        <p class="sub">Atendimento humano, comparativo imparcial entre as melhores opções do mercado e suporte verdadeiro no dia a dia.</p>
+        <div class="grid grid-2">
+          <div>
+            <h3>Consultoria personalizada</h3>
+            <p style="color:var(--muted)">Entendemos sua necessidade e montamos o plano ideal para cada fase da vida ou do negócio.</p>
+          </div>
+          <div>
+            <h3>Parcerias sólidas</h3>
+            <p style="color:var(--muted)">Trabalhamos com administradoras e seguradoras líderes, garantindo segurança e condições competitivas.</p>
+          </div>
+          <div>
+            <h3>Pós-venda de verdade</h3>
+            <p style="color:var(--muted)">Acompanhamento em sinistros, reajustes, trocas de plano e expansão de crédito no consórcio.</p>
+          </div>
+          <div>
+            <h3>Transparência total</h3>
+            <p style="color:var(--muted)">Sem letras miúdas: você entende antes de assinar. Simples, claro e objetivo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid" style="gap:18px">
+        <img src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop" alt="Equipe de consultores" />
+        <div class="testi">
+          <div class="quote">
+            <p>“Fechei consórcio de imóvel com lance embutido e fui contemplado em 3 meses. Atendimento nota 10.”</p>
+            <div class="author"><div class="avatar"></div><div><b>Rafael M.</b><br><small style="color:var(--muted)">Empresário</small></div></div>
+          </div>
+          <div class="quote">
+            <p>“Na renovação do seguro da frota, reduziram 18% do custo mantendo as coberturas.”</p>
+            <div class="author"><div class="avatar"></div><div><b>Translog</b><br><small style="color:var(--muted)">Cliente empresarial</small></div></div>
+          </div>
+          <div class="quote">
+            <p>“Migrei o convênio da minha clínica com carência reduzida. Processo rápido e claro.”</p>
+            <div class="author"><div class="avatar"></div><div><b>Dra. Camila</b><br><small style="color:var(--muted)">Dentista</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabelas simples de referência -->
+  <section class="section">
+    <div class="container">
+      <h2>Comparativos rápidos</h2>
+      <p class="sub">Exemplos ilustrativos para referência. Valores variam conforme perfil e regras de cada administradora/seguradora.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Consórcio de Auto</h3>
+          <table style="width:100%;border-collapse:collapse">
+            <thead>
+              <tr style="color:var(--muted)">
+                <th style="text-align:left;padding:8px 0">Crédito</th>
+                <th style="text-align:left;padding:8px 0">Parcelas*</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>R$ 60.000</td><td>R$ 890 / 72x</td></tr>
+              <tr><td>R$ 80.000</td><td>R$ 1.180 / 80x</td></tr>
+              <tr><td>R$ 100.000</td><td>R$ 1.420 / 84x</td></tr>
+            </tbody>
+          </table>
+          <small style="color:var(--muted)">*Estimativas com taxa adm. inclusa.</small>
+        </div>
+        <div class="card">
+          <h3>Seguro Auto</h3>
+          <ul class="list">
+            <li>Cobertura: colisão, roubo, incêndio</li>
+            <li>Assistência 24h guincho 300km</li>
+            <li>Carro reserva 7/15/30 dias</li>
+            <li>Franquia: normal ou reduzida</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Convênios PME</h3>
+          <ul class="list">
+            <li>Planos a partir de 2 vidas</li>
+            <li>Rede hospitalar regional/nacional</li>
+            <li>Coparticipação opcional</li>
+            <li>Telemedicina e descontos em exames</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container card" style="display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:center">
+      <div>
+        <h2>Pronto(a) para economizar?</h2>
+        <p class="sub">Envie seus dados e receba uma simulação personalizada por WhatsApp ou e‑mail ainda hoje.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="#contato" class="btn">Pedir simulação</a>
+          <a href="https://wa.me/5500000000000" target="_blank" class="btn btn-outline">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1200&auto=format&fit=crop" alt="Cálculo de propostas" />
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="section">
+    <div class="container">
+      <h2>Solicite uma simulação gratuita</h2>
+      <p class="sub">Preencha o formulário e retornaremos com as melhores opções para seu perfil.</p>
+      <div class="contact">
+        <form class="card" onsubmit="event.preventDefault();alert('Obrigado! Recebemos sua solicitação. Em breve entraremos em contato.');this.reset();">
+          <div class="row">
+            <div>
+              <label>Nome</label>
+              <input type="text" placeholder="Seu nome" required>
+            </div>
+            <div>
+              <label>WhatsApp</label>
+              <input type="tel" placeholder="(11) 99999-9999" required>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>E‑mail</label>
+              <input type="email" placeholder="voce@email.com">
+            </div>
+            <div>
+              <label>Serviço de interesse</label>
+              <select required>
+                <option value="" disabled selected>Selecione</option>
+                <option>Consórcio</option>
+                <option>Seguro</option>
+                <option>Convênio</option>
+              </select>
+            </div>
+          </div>
+          <label>Mensagem</label>
+          <textarea placeholder="Conte rapidamente seu objetivo (ex.: consórcio de auto R$80k em 72x)"></textarea>
+          <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end">
+            <button type="reset" class="btn btn-outline">Limpar</button>
+            <button type="submit" class="btn">Enviar</button>
+          </div>
+        </form>
+        <div class="card">
+          <h3>Contato</h3>
+          <p style="color:var(--muted);line-height:1.8">
+            📞 (11) 0000‑0000<br>
+            ✉️ contato@alphacorretora.com.br<br>
+            📍 Rua Exemplo, 123 — Cotia/SP
+          </p>
+          <h3>Horários</h3>
+          <p style="color:var(--muted)">Seg a Sex: 9h às 18h • Sábado: 9h às 13h</p>
+          <h3>Redes</h3>
+          <div class="social">
+            <a href="#" class="tag">Instagram</a>
+            <a href="#" class="tag">Facebook</a>
+            <a href="#" class="tag">LinkedIn</a>
+          </div>
+          <div style="margin-top:16px">
+            <iframe title="Mapa" style="width:100%;height:220px;border:0;border-radius:12px" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.850642933853!2d-46.850000!3d-23.570000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCotia!5e0!3m2!1spt-BR!2sBR!4v1688488888888"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container cols">
+      <div>
+        <div class="brand">
+          <div class="logo"><span>α</span></div>
+          <div>
+            <strong>Alpha Corretora</strong><br>
+            <small style="color:var(--muted)">CNPJ 00.000.000/0001-00</small>
+          </div>
+        </div>
+        <p style="color:var(--muted);margin-top:10px">© <span id="year"></span> Alpha Corretora. Todos os direitos reservados.</p>
+      </div>
+      <div>
+        <b>Serviços</b>
+        <ul class="list">
+          <li><a href="#consorcio">Consórcios</a></li>
+          <li><a href="#seguros">Seguros</a></li>
+          <li><a href="#convenios">Convênios</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>Empresa</b>
+        <ul class="list">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>Atendimento</b>
+        <ul class="list">
+          <li>Seg a Sex 9h-18h</li>
+          <li>Sábado 9h-13h</li>
+          <li>Emergência 24h seguros</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/5500000000000" target="_blank">💬 WhatsApp</a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const hambBtn = document.getElementById('hambBtn');
+    const mobile = document.getElementById('mobileMenu');
+    if(hambBtn){
+      hambBtn.addEventListener('click',()=>{
+        mobile.style.display = mobile.style.display==='block' ? 'none' : 'block';
+      });
+    }
+  </script>
+</body>
+</html>
